@@ -12,7 +12,10 @@ const PORT = process.env.PORT || 5000;
 // Fetch sectoral indices data
 app.get("/api/getNiftySectors", async (req, res) => {
   try {
-    const response = await axios.get("https://www.nseindia.com/api/sectoral-indices");
+    const response = await axios.get("https://nifty-backend.onrender.com/api/getNiftySectors");
+    const response = await axios.get(`https://nifty-backend.onrender.com/api/getStocksBySector?sector=${sector}`);
+
+    // const response = await axios.get("https://www.nseindia.com/api/sectoral-indices");
     const sectors = response.data.data.map((sector) => ({
       name: sector.indexName,
       current: sector.last,
